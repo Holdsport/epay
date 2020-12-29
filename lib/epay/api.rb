@@ -73,7 +73,7 @@ module Epay
           end
         end
 
-        Request.execute(:method => :post, :url => service_url, :payload => xml.target!, :timeout => 90000000, :headers => headers) do |raw_response, request, result|
+        RestClient::Request.execute(:method => :post, :url => service_url, :payload => xml.target!, :timeout => 90000000, :headers => headers) do |raw_response, request, result|
           response = Response.new(raw_response, action)
           
           if block_given?
