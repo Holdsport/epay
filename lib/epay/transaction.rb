@@ -112,7 +112,7 @@ module Epay
     def credit(amount_to_be_credited = nil)
       amount_to_be_credited ||= amount - credited_amount
       
-      Epay::Api.request(PAYMENT_SOAP_URL, 'credit', :transactionid => id, :amount => amount_to_be_credited * 100) do |response|
+      Epay::Api.request(PAYMENT_SOAP_URL, 'credit', :transactionid => id, :amount => (amount_to_be_credited * 100).to_i) do |response|
         if response.success?
           true
         else
